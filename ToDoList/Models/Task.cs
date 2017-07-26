@@ -11,6 +11,8 @@ namespace ToDoList.Models
     {
         [Key]
         public int ID { get; set; }
+        //[Display(Name = "Task Name")]
+        //public string TaskName { get; set; }
         public string Descripton { get; set; }
         public bool IsDone { get; set; }
         public DateTime DueDate { get; set; }

@@ -21,6 +21,18 @@ namespace ToDoList.Controllers
             return View(tasks.ToList());
         }
 
+        public ActionResult Reminders()
+        {
+            var tasks = db.Tasks.Include(t => t.List);
+            return View(tasks.ToList());
+        }
+
+        public ActionResult CompletedTasks()
+        {
+            var tasks = db.Tasks.Include(t => t.List);
+            return View(tasks.ToList());
+        }
+
         // GET: Tasks/Details/5
         public ActionResult Details(int? id)
         {
@@ -107,6 +119,29 @@ namespace ToDoList.Controllers
                 return HttpNotFound();
             }
             return View(task);
+        }
+
+        public ActionResult ToggleDone(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Task task = db.Tasks.Find(id);
+            if (task == null)
+            {
+                return HttpNotFound();
+            }
+            if (task.IsDone)
+            {
+                task.IsDone = false;
+            }
+            else
+            {
+                task.IsDone = true;
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // POST: Tasks/Delete/5

@@ -12,8 +12,9 @@ namespace ToDoList.Models
         [Key]
         public int ID { get; set; }
         public string Title { get; set; }
-        public virtual ICollection<Task> Task { get; set; }
         public DateTime CurrentDate { get; set; }
+        public virtual ICollection<Task> Task { get; set; }
+        
 
         //private DateTime _currentDate = DateTime.Now;
         //public DateTime CurrentDate { get; set; }
